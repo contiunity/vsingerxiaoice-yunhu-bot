@@ -3,3 +3,6 @@ openai
 sqlalchemy
 pgvector
 toml
+fastapi
+uvicorn
+psycopg2
