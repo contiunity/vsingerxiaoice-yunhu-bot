@@ -109,6 +109,7 @@ class IntellgenceApp:
                         })
                     else:
                         return self.langpack.get("unknown_error", "unknown error")
+                    return await self.chatCompletions(history, user, prefix)
             elif comp.choices[0].finish_reason == "content_filter":
                 return self.langpack.get("censored_error", "audit rejected")
             elif comp.choices[0].finish_reason == "length":
