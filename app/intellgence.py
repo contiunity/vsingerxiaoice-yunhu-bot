@@ -2,6 +2,7 @@ import openai
 from app.memory import MemoryApp
 import weakref
 import json
+import time
 
 class lockAligner:
     def __init__(self, user: str):
@@ -68,6 +69,17 @@ class IntellgenceApp:
                                 }
                             }
                         }
+                    },
+                    {
+                        "type": "function",
+                        "function": {
+                            "name": "get_time",
+                            "description": "获取当前时间。",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
                     }
                 ]
             )
@@ -105,6 +117,13 @@ class IntellgenceApp:
                             "role": "tool",
                             "tool_call_id": tool_call.id,
                             "name": "get_memory",
+                            "content": results,
+                        })
+                    elif tool_call.function.name == "get_time":
+                        history.append({
+                            "role": "tool",
+                            "tool_call_id": time.strftime('%Y-%m-%d %H:%M:%S %A'),
+                            "name": "get_time",
                             "content": results,
                         })
                     else:
