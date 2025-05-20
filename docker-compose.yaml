@@ -1,0 +1,8 @@
+services:
+  mainapp:
+    image: python:3.12
+    volumes:
+      - .:/app
+    ports:
+      - 45012:45012
+    command: /app/serve.py
