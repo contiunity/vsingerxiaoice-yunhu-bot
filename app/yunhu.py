@@ -75,4 +75,8 @@ class YunhuApp:
             response = await self.llm.userChatMessage("yunhu:"+message.sender, message.content)
             await self.response(message, response, "markdown")
         elif message.action == "news":
-            response = await self.llm.userAction("news", self.prompts.get("search_news", "please search the news"), in_context=not message.isGroup)
+            response = await self.llm.userAction("yunhu:"+message.sender, self.prompts.get("search_news", "please search the news"), in_context=not message.isGroup)
+        elif message.action == "weather":
+            prompt: str = self.prompts.get("search_weather", "please search the weather of: {{address}}")
+            prompt = prompt.replace("{{address}}", message.content)
+            response = await self.llm.userAction("yunhu:"+message.sender, prompt, in_context=not message.isGroup)

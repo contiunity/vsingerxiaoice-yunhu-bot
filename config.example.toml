@@ -42,6 +42,8 @@ webhook = "/yunhu-callback"
 
 [yunhu.instruct]
 news = 1484
+weather = 1486
 
 [yunhu.prompt]
 search_news = "请搜索最近的新闻"
+search_weather = "请搜索【{{address}}】地区的天气预报。"
